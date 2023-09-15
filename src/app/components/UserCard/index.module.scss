@@ -1,0 +1,26 @@
+@use "@/scss/utils/colors";
+
+.userCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.userCard__avatar {
+  width: 4rem;
+  height: 4rem;
+  background-color: colors.get(white, .4);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.userCard__name {
+  cursor: pointer;
+  color: colors.get(white, .7);
+  transition: .2s color;
+  text-decoration: none;
+  &:hover {
+    color: colors.get(white);
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import Link from "next/link";
+import UserCard from "@/app/components/UserCard";
 
 const Header = () => {
     return (
@@ -31,14 +32,6 @@ const Header = () => {
                     </li>
                     <li className={styles.header__item}>
                         <Link
-                            href={'/profile'}
-                            className={styles.header__link}
-                        >
-                            Профиль
-                        </Link>
-                    </li>
-                    <li className={styles.header__item}>
-                        <Link
                             href={'/about'}
                             className={styles.header__link}
                         >
@@ -46,6 +39,9 @@ const Header = () => {
                         </Link>
                     </li>
                 </ul>
+                <div className={styles.header__userCard}>
+                    <UserCard/>
+                </div>
             </div>
             <div className={styles.header__line}></div>
         </header>

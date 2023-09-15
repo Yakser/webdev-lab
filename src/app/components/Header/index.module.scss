@@ -14,6 +14,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
+
 }
 .header__line {
   width: 100%;
@@ -29,6 +30,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  place-self: center;
 }
 
 .header__logo {
@@ -46,4 +48,8 @@
   &:hover {
     color: colors.get(white);
   }
+}
+
+.header__userCard {
+  place-self: end;
 }
