@@ -8,6 +8,7 @@ const inter = Inter({subsets: ['latin', 'cyrillic']})
 import Header from "@/app/components/Header";
 import React from "react";
 import {Providers} from "@/utils/providers";
+import UserDataFetcher from "@/app/components/UserDataFetcher";
 
 export const metadata: Metadata = {
     title: 'webdev-lab | Главная',
@@ -23,6 +24,7 @@ export default function RootLayout({
         <html lang="ru">
         <body className={inter.className}>
         <Providers>
+            <UserDataFetcher/>
             <Header/>
             <h1 className={'visually-hidden'}>webdev-lab - новостное приложение</h1>
             <main className={styles.main}>
