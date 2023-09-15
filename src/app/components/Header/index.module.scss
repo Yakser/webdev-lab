@@ -1,0 +1,49 @@
+@use "../../../scss/utils/colors";
+
+.header {
+  padding: 2rem;
+  padding-bottom: 0;
+  position: sticky;
+  top: 0;
+  // todo
+  backdrop-filter: blur(1rem) saturate(180%);
+  z-index: 10;
+}
+
+.header__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.header__line {
+  width: 100%;
+  height: .1rem;
+  background-image:radial-gradient(circle, rgba(255,255,255, .3) 0%, rgba(0,0,0,0) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 1.9rem;
+}
+
+.header__list {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header__logo {
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: colors.get(white);
+  text-decoration: none;
+}
+
+.header__link {
+  text-decoration: none;
+  color: colors.get(white, .7);
+  font-size: 1.4rem;
+  transition: .15s color;
+  &:hover {
+    color: colors.get(white);
+  }
+}

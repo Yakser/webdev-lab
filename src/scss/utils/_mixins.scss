@@ -1,0 +1,27 @@
+@use "colors";
+
+@mixin reset {
+  //margin: 0;
+  //padding: 0;
+  //text-decoration: none;
+}
+
+@mixin wrapper-desktop {
+  max-width: 114rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+//@mixin scrollbar {
+//  &::-webkit-scrollbar {
+//    width: .4rem;
+//    height: .4rem;
+//  }
+//  &::-webkit-scrollbar-thumb {
+//    background-color: colors.get(red);
+//    border-radius: 2px;
+//    border: 1px solid rgba(128, 128, 128, .1);
+//  }
+//}
+
+
