@@ -1,0 +1,15 @@
+.admin {
+
+}
+
+.admin__commentsList {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.admin__commentsListItem {
+  width: 100%;
+}

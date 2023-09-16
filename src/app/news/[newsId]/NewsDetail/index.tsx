@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import {formatDatetime, getAccessToken} from "@/utils/helpers";
 import api from "@/utils/api";
-import Comment from './Comment';
+import Comment from '../../../components/Comment';
 import {useForm} from "react-hook-form";
 
 type FormInputs = {

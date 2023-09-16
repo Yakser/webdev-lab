@@ -6,9 +6,16 @@
   border-radius: 1.5rem;
 }
 
+.comment__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .comment__datetimeCreated {
   color: colors.get(white, .7);
   font-size: 1.4rem;
+  margin-right: auto;
 }
 
 .comment__avatar {
@@ -18,12 +25,13 @@
   border-radius: 50%;
 }
 
-.comment__header {
+.comment__author {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
 }
+
 .comment__text {
   margin-top: 1rem;
 }
