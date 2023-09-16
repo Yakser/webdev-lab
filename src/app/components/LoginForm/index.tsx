@@ -1,9 +1,8 @@
 "use client";
-import React, {FormEvent, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './index.module.scss';
-import {FieldValues, useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {useAppDispatch} from "@/utils/hooks";
-import {getAccessToken} from "@/utils/helpers";
 import {login} from '@/utils/authThunk';
 import {useRouter} from 'next/navigation';
 
@@ -23,7 +22,6 @@ const LoginForm = () => {
         formState: {isSubmitSuccessful, errors},
 
     } = useForm<FormInputs>();
-    const token = getAccessToken();
     const dispatch = useAppDispatch();
     const onSubmit = async ({username, password}: FormInputs) => {
         setIsLoading(true);
@@ -40,23 +38,28 @@ const LoginForm = () => {
         });
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <label className={styles.form__label}>
+        <form onSubmit={handleSubmit(onSubmit)} className={'form'}>
+            <label className={'form__label'}>
                 <input type="text"
-                       className={styles.form__input}
+                       className={`form__input`}
                        {...register("username")}
                        placeholder={"Логин"}
                 />
             </label>
-            <label className={styles.form__label}>
+            <label className={'form__label'}>
                 <input type="password"
-                       className={styles.form__input}
+                       className={`form__input`}
                        {...register("password")}
                        placeholder={"Пароль"}
                 />
             </label>
+            {errors.root && (
+                <p className={`form__error`}>
+                    {errors.root.message}
+                </p>
+            )}
             <button
-                className={styles.form__submit}
+                className={'form__submit'}
                 type={"submit"}
                 disabled={isLoading}
             >

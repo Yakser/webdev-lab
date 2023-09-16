@@ -1,0 +1,52 @@
+@use "../utils/colors";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__label {
+  width: 100%;
+}
+.form__labelText {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.form__input, .form__textarea {
+  border-radius: 1000000px;
+  background-color: colors.get(white, .1);
+  color: colors.get(white);
+  border: 0;
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.form__textarea {
+  border-radius: 2rem;
+  resize: none;
+}
+
+.form__submit {
+  border-radius: 1000000px;
+  background-color: colors.get(white);
+  color: colors.get(black);
+  font-weight: 600;
+  border: 0;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: max-content;
+  transition: .2s;
+  transition-property: background-color, color;
+  align-self: flex-start;
+  &:hover {
+    background-color: colors.get(blue);
+    color: colors.get(white);
+  }
+}

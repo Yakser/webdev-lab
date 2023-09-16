@@ -1,7 +1,6 @@
 @use "@/scss/utils/colors";
 
 .newsDetail {
-
 }
 
 .newsDetail__subtitle {
@@ -12,6 +11,9 @@
 .newsDetail__comments {
   list-style-type: none;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .newsDetail__datetimeCreated {
