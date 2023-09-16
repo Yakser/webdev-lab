@@ -5,8 +5,9 @@ import styles from './index.module.scss';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import {getAccessToken} from "@/utils/helpers";
+import {formatDatetime, getAccessToken} from "@/utils/helpers";
 import api from "@/utils/api";
+import Comment from './Comment';
 
 type NewsDetailProps = {
     newsDetailPost: NewsDetail;
@@ -23,12 +24,14 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(response => {
-            console.log(response);
         });
 
     }, [newsDetailPost.id, token]);
     return (
         <section className={styles.newsDetail}>
+            <time className={styles.newsDetail__datetimeCreated} dateTime={newsDetailPost.datetime_created}>
+                {formatDatetime(newsDetailPost.datetime_created)}
+            </time>
             <h2 className={`title ${styles.newsDetail__title}`}>
                 {newsDetailPost.title}
             </h2>
@@ -39,6 +42,20 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
             >
                 {newsDetailPost.text}
             </ReactMarkdown>
+            {
+                newsDetailPost.comments.length > 0 && (
+                    <>
+                        <h3 className={styles.newsDetail__subtitle}>Комментарии</h3>
+                        <ul className={styles.newsDetail__comments}>
+                            {
+                                newsDetailPost.comments.map(comment => <li key={comment.id}>
+                                    <Comment comment={comment}/>
+                                </li>)
+                            }
+                        </ul>
+                    </>
+                )
+            }
         </section>
     );
 };

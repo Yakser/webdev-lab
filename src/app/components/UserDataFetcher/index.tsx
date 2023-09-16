@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import styles from './page.module.scss'
 import {useAppDispatch, useAppSelector} from "@/utils/hooks";
 import {useEffect} from "react";
 import {fetchUserData, logout} from "@/utils/authThunk";
@@ -23,7 +22,7 @@ const UserDataFetcher = () => {
             dispatch(logout());
             router.push("/login");
         }
-    }, [dispatch, router, token]);
+    }, [user.id, dispatch, router, token]);
 
     return <></>;
 

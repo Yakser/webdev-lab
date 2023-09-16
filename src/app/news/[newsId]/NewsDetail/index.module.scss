@@ -1,3 +1,22 @@
+@use "@/scss/utils/colors";
+
 .newsDetail {
 
+}
+
+.newsDetail__subtitle {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.newsDetail__comments {
+  list-style-type: none;
+  margin-top: 2rem;
+}
+
+.newsDetail__datetimeCreated {
+  display: inline-block;
+  color: colors.get(white, .7);
+  font-size: 1.4rem;
+  margin-bottom: .5rem;
 }

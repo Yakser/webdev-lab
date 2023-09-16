@@ -8,7 +8,7 @@ type PageProps = {
 
 const getNewsDetail = async (newsId: number): Promise<Response> => {
     return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/news/${newsId}/`,
-        {cache: 'force-cache'});
+        {cache: 'default'}); 
 }
 const Page: React.FC<PageProps> = async ({params}: { params: { newsId: number } }) => {
     try {

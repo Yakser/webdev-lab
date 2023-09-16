@@ -1,0 +1,29 @@
+@use "@/scss/utils/colors";
+
+.comment {
+  background-color: colors.get(white, .05);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+}
+
+.comment__datetimeCreated {
+  color: colors.get(white, .7);
+  font-size: 1.4rem;
+}
+
+.comment__avatar {
+  width: 4rem;
+  height: 4rem;
+  background-color: colors.get(white, .4);
+  border-radius: 50%;
+}
+
+.comment__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.comment__text {
+  margin-top: 1rem;
+}
