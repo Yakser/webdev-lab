@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './index.module.scss';
 import Link from "next/link";
 import UserCard from "@/app/components/UserCard";
+import AdminOnly from "@/app/components/AdminOnly";
 
 const Header = () => {
     return (
@@ -24,7 +25,7 @@ const Header = () => {
                     </li>
                     <li className={styles.header__item}>
                         <Link
-                            href={'/news'}
+                            href={'/news/'}
                             className={styles.header__link}
                         >
                             Новости
@@ -32,12 +33,22 @@ const Header = () => {
                     </li>
                     <li className={styles.header__item}>
                         <Link
-                            href={'/about'}
+                            href={'/about/'}
                             className={styles.header__link}
                         >
                             О приложении
                         </Link>
                     </li>
+                    <AdminOnly>
+                        <li className={styles.header__item}>
+                            <Link
+                                href={'/admin/'}
+                                className={styles.header__link}
+                            >
+                                Админ-панель
+                            </Link>
+                        </li>
+                    </AdminOnly>
                 </ul>
                 <div className={styles.header__userCard}>
                     <UserCard/>
