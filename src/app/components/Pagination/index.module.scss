@@ -1,0 +1,40 @@
+@use "@/scss/utils/colors";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 100000px;
+  background-color: colors.get(white, .05);
+  list-style-type: none;
+
+  &__item {
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: .2s;
+    transition-property: opacity, background-color, color;
+    background-color: transparent;
+    user-select: none;
+
+    &:hover:not(&_disabled) {
+      background-color: colors.get(blue);
+    }
+
+    &_active {
+      background-color: colors.get(blue);
+    }
+
+    &_disabled {
+      opacity: .2;
+    }
+    &:first-child, &:last-child {
+      border-radius: 100000px;
+    }
+  }
+}

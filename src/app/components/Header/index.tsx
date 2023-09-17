@@ -3,50 +3,51 @@ import styles from './index.module.scss';
 import Link from "next/link";
 import UserCard from "@/app/components/UserCard";
 import AdminOnly from "@/app/components/AdminOnly";
+import CustomLink from "@/app/components/CustomLink";
 
 const Header = () => {
     return (
         <header className={styles.header}>
             <div className={`wrapper ${styles.header__wrapper}`}>
-                <Link
+                <CustomLink
                     href={'/'}
                     className={styles.header__logo}
                 >
                     webdev-lab
-                </Link>
+                </CustomLink>
                 <ul className={styles.header__list}>
                     <li className={styles.header__item}>
-                        <Link
+                        <CustomLink
                             href={'/'}
                             className={styles.header__link}
                         >
                             Главная
-                        </Link>
+                        </CustomLink>
                     </li>
                     <li className={styles.header__item}>
-                        <Link
+                        <CustomLink
                             href={'/news/'}
                             className={styles.header__link}
                         >
                             Новости
-                        </Link>
+                        </CustomLink>
                     </li>
                     <li className={styles.header__item}>
-                        <Link
+                        <CustomLink
                             href={'/about/'}
                             className={styles.header__link}
                         >
                             О приложении
-                        </Link>
+                        </CustomLink>
                     </li>
                     <AdminOnly>
                         <li className={styles.header__item}>
-                            <Link
+                            <CustomLink
                                 href={'/admin/'}
                                 className={styles.header__link}
                             >
                                 Админ-панель
-                            </Link>
+                            </CustomLink>
                         </li>
                     </AdminOnly>
                 </ul>
