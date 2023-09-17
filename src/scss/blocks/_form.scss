@@ -21,16 +21,29 @@
 
 .form__input, .form__textarea {
   border-radius: 1000000px;
-  background-color: colors.get(white, .1);
+  background-color: colors.get(white, .05);
   color: colors.get(white);
   border: 0;
   padding: 1rem 2rem;
   width: 100%;
+  &:focus, &:focus-visible {
+    outline: solid colors.get(white) .3rem;
+  }
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: colors.get(white);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20rem 20rem colors.get(white, .05);
+  }
 }
 
 .form__textarea {
   border-radius: 2rem;
   resize: none;
+
 }
 
 .form__submit {
@@ -48,5 +61,8 @@
   &:hover {
     background-color: colors.get(blue);
     color: colors.get(white);
+  }
+  &:focus, &:focus-visible {
+    outline: solid colors.get(white) .3rem;
   }
 }

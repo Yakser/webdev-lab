@@ -13,22 +13,26 @@ const Page = () => {
     const router = useRouter();
     const {user} = useAppSelector((state) => state.auth);
 
-    // if (!user.is_staff) {
-    //     router.push('/');
-    // }
 
     const removeComment = (commentId: number) => {
         setComments(comments.filter(comment => comment.id != commentId));
     }
 
     useEffect(() => {
+        if (!user.is_staff) {
+            return;
+        }
         api.get('/comments/unmoderated/').then((response) => {
             const data = response.data;
             setComments(response.data);
         }).catch(error => {
             console.log(error);
         })
-    }, []);
+    }, [user.is_staff]);
+
+    if (!user.is_staff) {
+        return router.push('/');
+    }
 
     return (
         <section className={styles.admin}>
@@ -36,7 +40,8 @@ const Page = () => {
             <ul className={styles.admin__commentsList}>
                 {
                     comments.map(comment => <li key={comment.id} className={styles.admin__commentsListItem}>
-                        <CommentWithControls comment={comment} approveCallback={removeComment} deleteCallback={removeComment}/>
+                        <CommentWithControls comment={comment} approveCallback={removeComment}
+                                             deleteCallback={removeComment}/>
                     </li>)
                 }
             </ul>

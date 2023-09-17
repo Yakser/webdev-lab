@@ -53,7 +53,7 @@ const Page = () => {
     return (
         <section className={styles.news}>
             <h2 className={'title'}>Новости</h2>
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <form className={`form ${styles.news__form}`} onSubmit={handleSubmit(onSubmit)}>
                 <label className="form__label">
                     <span className="form__labelText">Заголовок</span>
                     <input type="text"

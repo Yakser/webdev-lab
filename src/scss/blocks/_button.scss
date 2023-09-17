@@ -12,7 +12,7 @@
   transition: .2s;
   transition-property: background-color, color;
   align-self: flex-start;
-
+  text-decoration: none;
   &:hover {
     background-color: colors.get(blue);
     color: colors.get(white);

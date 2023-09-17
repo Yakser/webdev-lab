@@ -10,12 +10,28 @@ const UserCard = () => {
     const {user} = useAppSelector((state) => state.auth);
     return (
         <div className={styles.userCard}>
-            <Link className={styles.userCard__name} href={'/profile'}>
-                {user.first_name} {user.last_name}
-            </Link>
-            <Link href={'/profile'}>
-                <div className={styles.userCard__avatar}></div>
-            </Link>
+            {
+
+                user.id ? (
+                    <>
+                        <Link className={styles.userCard__name} href={'/profile'}>
+                            {user.first_name} {user.last_name}
+                        </Link>
+                        <Link href={'/profile'}>
+                            <div className={styles.userCard__avatar}></div>
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link className={'button'} href={'/login'}>
+                            Войти
+                        </Link>
+                        <Link className={'button'} href={'/register'}>
+                            Зарегистрироваться
+                        </Link>
+                    </>
+                )
+            }
         </div>
     );
 };
