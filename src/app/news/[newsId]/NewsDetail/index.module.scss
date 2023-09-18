@@ -1,6 +1,7 @@
 @use "@/scss/utils/colors";
 
 .newsDetail {
+
 }
 
 .newsDetail__subtitle {
@@ -21,4 +22,8 @@
   color: colors.get(white, .7);
   font-size: 1.4rem;
   margin-bottom: .5rem;
+}
+.newsDetail__emptyComments {
+  margin-top: 2rem;
+  color: colors.get(white, .7);
 }

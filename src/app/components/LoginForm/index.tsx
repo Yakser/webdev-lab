@@ -42,14 +42,18 @@ const LoginForm = () => {
             <label className={'form__label'}>
                 <input type="text"
                        className={`form__input`}
-                       {...register("username")}
+                       {...register("username", {
+                           required: true,
+                       })}
                        placeholder={"Логин"}
                 />
             </label>
             <label className={'form__label'}>
                 <input type="password"
                        className={`form__input`}
-                       {...register("password")}
+                       {...register("password", {
+                           required: true,
+                       })}
                        placeholder={"Пароль"}
                 />
             </label>

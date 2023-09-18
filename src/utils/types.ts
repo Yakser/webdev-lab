@@ -23,6 +23,7 @@ export type News = {
     title: string;
     text: string;
     datetime_created: string;
+    author: Pick<User, "id" | "username" | "first_name" | "last_name">
 }
 
 export type NewsDetail = News & {

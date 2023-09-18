@@ -9,6 +9,11 @@
 .newsPost__title {
   font-size: 3rem;
   margin-bottom: 2rem;
+  font-weight: 900;
+
+  a {
+    color: colors.get(white);
+  }
 }
 
 .newsPost__datetimeCreated {
@@ -16,4 +21,10 @@
   color: colors.get(white, .7);
   font-size: 1.4rem;
   margin-bottom: .5rem;
+}
+
+.newsPost__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

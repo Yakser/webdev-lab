@@ -26,8 +26,12 @@
   border: 0;
   padding: 1rem 2rem;
   width: 100%;
+  outline: solid transparent .3rem;
+
+  transition: .2s;
+  transition-property: outline-color;
   &:focus, &:focus-visible {
-    outline: solid colors.get(white) .3rem;
+    outline-color:  colors.get(white);
   }
   &:-webkit-autofill,
   &:-webkit-autofill:hover,

@@ -34,5 +34,15 @@ export const formatDatetime = (datetime: string): string => {
 }
 
 
+export const getLastPublishedNewsPostDate = () => {
+    return localStorage.getItem('last_published_news_post_date');
+};
+
+export const setLastPublishedNewsPostDate = (datetimeCreated: string) => {
+    localStorage.setItem('last_published_news_post_date', datetimeCreated);
+};
+
+
+
 
 

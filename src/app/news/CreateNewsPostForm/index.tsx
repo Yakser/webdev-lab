@@ -33,7 +33,7 @@ const CreateNewsPostForm: React.FC<CreateNewsPostFormProps> = ({onSubmit, handle
                         required: true
                     })}
                     cols={30}
-                    rows={10}
+                    rows={15}
                     placeholder={'Текст'}
                     className="form__textarea"></textarea>
             </label>

@@ -57,6 +57,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
         });
 
     }, [newsDetailPost.id, token]);
+
     return (
         <section className={styles.newsDetail}>
             <time className={styles.newsDetail__datetimeCreated} dateTime={newsDetailPost.datetime_created}>
@@ -104,13 +105,20 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
             <h3 className={styles.newsDetail__subtitle}>
                 Комментарии
             </h3>
-            <ul className={styles.newsDetail__comments}>
-                {
-                    newsDetailPost.comments.map(comment => <li key={comment.id}>
-                        <Comment comment={comment}/>
-                    </li>)
-                }
-            </ul>
+            {
+                newsDetailPost.comments.length > 0 ? (
+                    <ul className={styles.newsDetail__comments}>
+                        {
+                            newsDetailPost.comments.map(comment => <li key={comment.id}>
+                                <Comment comment={comment}/>
+                            </li>)
+                        }
+                    </ul>
+                ) : (
+                    <p className={styles.newsDetail__emptyComments}>Комментариев пока что нет 😞</p>
+                )
+            }
+
 
         </section>
     );

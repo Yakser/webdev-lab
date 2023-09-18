@@ -1,3 +1,12 @@
 .profile {
 
 }
+.profile__subtitle {
+  margin-top: 2rem;
+}
+.profile__newsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}

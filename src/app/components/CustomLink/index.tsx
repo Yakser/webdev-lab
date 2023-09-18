@@ -3,7 +3,7 @@ import React from 'react';
 import Link from "next/link";
 
 type CustomLinkProps = {
-    className: string;
+    className?: string;
     href: string;
     children: React.ReactNode;
 }
