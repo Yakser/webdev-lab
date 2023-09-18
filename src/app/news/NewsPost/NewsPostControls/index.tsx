@@ -16,7 +16,7 @@ const NewsPostControls: React.FC<NewsPostControlsProps> = ({authorId, newsId}) =
 
     return (
         user.id === authorId && <>
-            <CustomLink href={`/news/${newsId}/edit/`}>
+            <CustomLink href={`/news/${newsId}/edit/`} className={styles.newsPostControls}>
                 <Icon width={24} height={24}>
                     <svg width="24" height="24" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd"

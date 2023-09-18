@@ -10,8 +10,8 @@ import CreateNewsPostForm from "@/app/news/CreateNewsPostForm";
 import {useAppSelector} from "@/utils/hooks";
 import Pagination from "@/app/components/Pagination";
 import {getLastPublishedNewsPostDate, setLastPublishedNewsPostDate} from "@/utils/helpers";
-import WebSocketClient from "@/app/components/WebSocketClient";
 import useWebSocket from "react-use-websocket";
+import Head from "next/head";
 
 export type CreateNewsPostFormInputs = {
     title: string,
@@ -21,6 +21,10 @@ export type CreateNewsPostFormInputs = {
 const Page = () => {
     const {user} = useAppSelector((state) => state.auth);
     const paginationLimit = 3;
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [news, setNews] = useState<News[]>([]);
+    const [totalCount, setTotalCount] = React.useState<number>(0);
+    const [currentPageIndex, setCurrentPageIndex] = React.useState<number>(0);
     const {
         sendMessage,
         lastMessage,
@@ -28,16 +32,13 @@ const Page = () => {
     } = useWebSocket(process.env.NEXT_PUBLIC_WEBSOCKET_API_URL || '', {
         onMessage: (event) => {
             const data = JSON.parse(event.data);
-            if (data.author_id !== user.id) {
-                alert(data.title);
+            if (data.author.id !== user.id) {
+                setNews([data, ...news]);
+                setLastPublishedNewsPostDate(data.datetime_created);
+                alert(`${data.author.first_name} ${data.author.last_name} выложил новость "${data.title}"!`);
             }
         }
     });
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [news, setNews] = useState<News[]>([]);
-    const [totalCount, setTotalCount] = React.useState<number>(0);
-    const [currentPageIndex, setCurrentPageIndex] = React.useState<number>(0);
 
     const {
         register,
@@ -55,9 +56,7 @@ const Page = () => {
             .then(response => {
                 setNews([response.data, ...news]);
                 setLastPublishedNewsPostDate(response.data.datetime_created);
-                sendMessage(JSON.stringify(
-                    {title, author_id: user.id}
-                ));
+                sendMessage(JSON.stringify(response.data));
                 reset();
             })
             .catch(error => {
@@ -74,16 +73,18 @@ const Page = () => {
             params: {
                 limit: paginationLimit,
                 offset: currentPageIndex * paginationLimit,
-            }
+            },
+            headers: {'Cache-Control': 'max-age=0'} // fixme?
         }
         api.get('/news/', config).then((response) => {
             setTotalCount(response.data.count);
             const news: News[] = response.data.results as News[];
             setNews(news);
             if (config.params.offset === 0 && news.length > 0) {
-                const lastNewsPostDatetimeCreated = news[0].datetime_created;
-                if (getLastPublishedNewsPostDate() != lastNewsPostDatetimeCreated) {
-                    setLastPublishedNewsPostDate(lastNewsPostDatetimeCreated);
+                const lastNewsPostDatetimeCreated = new Date(news[0].datetime_created);
+                const lastNewsPostDatetime = new Date(getLastPublishedNewsPostDate() || "");
+                if (lastNewsPostDatetime < lastNewsPostDatetimeCreated) {
+                    setLastPublishedNewsPostDate(news[0].datetime_created);
                     alert('Появились новые новости!');
                 }
             }
@@ -100,6 +101,9 @@ const Page = () => {
 
     return (
         <section className={styles.news}>
+            <Head>
+                <title>webdev-lab | Новости</title>
+            </Head>
             <h2 className={'title'}>Новости</h2>
             <CreateNewsPostForm onSubmit={onSubmit} handleSubmit={handleSubmit} isLoading={isLoading}
                                 register={register} formState={formState}/>
@@ -114,7 +118,6 @@ const Page = () => {
                                                                            currentPageIndex={currentPageIndex}
                                                                            showPage={setCurrentPageIndex}/>
             }
-            {/*<WebSocketClient onDataReceived={onNewsPostAdded}/>*/}
         </section>
     );
 };

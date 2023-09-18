@@ -26,6 +26,4 @@ export type News = {
     author: Pick<User, "id" | "username" | "first_name" | "last_name">
 }
 
-export type NewsDetail = News & {
-    comments: Comment[];
-}
+export type NewsDetail = News

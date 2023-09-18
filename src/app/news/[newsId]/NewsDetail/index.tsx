@@ -1,13 +1,13 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {News, NewsDetail} from "@/utils/types";
+import {News, NewsDetail, Comment as CommentType} from "@/utils/types";
 import styles from './index.module.scss';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import {formatDatetime, getAccessToken} from "@/utils/helpers";
 import api from "@/utils/api";
-import Comment from '../../../components/Comment';
+import Comment from "@/app/components/Comment";
 import {useForm} from "react-hook-form";
 
 type FormInputs = {
@@ -20,6 +20,8 @@ type NewsDetailProps = {
 const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
     const token = getAccessToken();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [comments, setComments] = useState<CommentType[]>([]);
+
     const {
         register,
         handleSubmit,
@@ -32,7 +34,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
 
     const onSubmit = async ({text}: FormInputs) => {
         setIsLoading(true);
-        api.post('/comments/', {text, news: newsDetailPost.id})
+        api.post(`/news/${newsDetailPost.id}/comments/`, {text, news: newsDetailPost.id})
             .then(response => {
                 reset();
             })
@@ -54,9 +56,14 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(response => {
+            console.log('news viewed');
         });
-
+        api.get(`/news/${newsDetailPost.id}/comments/`).then(response => {
+            console.log(response);
+            setComments(response.data);
+        })
     }, [newsDetailPost.id, token]);
+
 
     return (
         <section className={styles.newsDetail}>
@@ -106,10 +113,10 @@ const NewsDetail: React.FC<NewsDetailProps> = ({newsDetailPost}) => {
                 Комментарии
             </h3>
             {
-                newsDetailPost.comments.length > 0 ? (
+                comments.length > 0 ? (
                     <ul className={styles.newsDetail__comments}>
                         {
-                            newsDetailPost.comments.map(comment => <li key={comment.id}>
+                            comments.map(comment => <li key={comment.id}>
                                 <Comment comment={comment}/>
                             </li>)
                         }

@@ -1,3 +1,11 @@
-.newsPostControls {
+@use "@/scss/utils/colors";
 
+.newsPostControls {
+  color: colors.get(white);
+  transition: .2s;
+  transition-property: color;
+
+  &:hover {
+    color: colors.get(blue);
+  }
 }

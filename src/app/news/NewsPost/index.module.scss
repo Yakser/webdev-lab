@@ -10,9 +10,15 @@
   font-size: 3rem;
   margin-bottom: 2rem;
   font-weight: 900;
+  width: max-content;
 
   a {
     color: colors.get(white);
+    transition: .2s;
+    transition-property: color;
+  }
+  &:hover a{
+    color: colors.get(white, .7);
   }
 }
 

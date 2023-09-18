@@ -32,14 +32,6 @@ const Header = () => {
                             Новости
                         </CustomLink>
                     </li>
-                    <li className={styles.header__item}>
-                        <CustomLink
-                            href={'/about/'}
-                            className={styles.header__link}
-                        >
-                            О приложении
-                        </CustomLink>
-                    </li>
                     <AdminOnly>
                         <li className={styles.header__item}>
                             <CustomLink

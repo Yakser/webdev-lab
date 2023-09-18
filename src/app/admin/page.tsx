@@ -7,6 +7,7 @@ import api from "@/utils/api";
 import {Comment as CommentType} from "@/utils/types";
 import CommentWithControls from "@/app/components/CommentWithConrols";
 import styles from './page.module.scss';
+import Head from "next/head";
 
 const Page = () => {
     const [comments, setComments] = useState<CommentType[]>([]);
@@ -36,6 +37,9 @@ const Page = () => {
 
     return (
         <section className={styles.admin}>
+            <Head>
+                <title>webdev-lab | Админ-панель</title>
+            </Head>
             <h2 className={'title'}>Админ-панель</h2>
             <ul className={styles.admin__commentsList}>
                 {

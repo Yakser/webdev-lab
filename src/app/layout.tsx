@@ -11,7 +11,7 @@ import {Providers} from "@/utils/providers";
 import UserDataFetcher from "@/app/components/UserDataFetcher";
 
 export const metadata: Metadata = {
-    title: 'webdev-lab | Главная',
+    // title: 'webdev-lab | Главная',
     description: 'Лабораторная работа по курсу "Серверная веб-разработка"',
 }
 
